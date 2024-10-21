@@ -3,6 +3,7 @@ package codabar
 import "strconv"
 
 type checkDigit string
+
 type CheckDigitStrategy func(seed) checkDigit
 
 func NewCheckDigitByMod11W7(seed seed) checkDigit {

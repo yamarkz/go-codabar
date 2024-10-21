@@ -9,7 +9,7 @@ type prefix string
 
 func NewPrefix(value string) (prefix, error) {
 	if len(value) != 1 || !strings.ContainsAny(value, "ABCD") {
-		return prefix(""), fmt.Errorf("prefix must be a single character")
+		return prefix(""), fmt.Errorf(": %w %s", ErrInvalidArgument, value)
 	}
 	return prefix(value), nil
 }

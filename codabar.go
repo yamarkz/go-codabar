@@ -1,6 +1,10 @@
 package codabar
 
+import "errors"
+
 type codabar string
+
+var ErrInvalidArgument = errors.New("invalid argument")
 
 func NewCodabar(prefix prefix, body body, suffix suffix) codabar {
 	return codabar(string(prefix) + string(body) + string(suffix))
