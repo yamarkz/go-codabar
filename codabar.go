@@ -2,6 +2,7 @@ package codabar
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -25,8 +26,11 @@ func NewSuffix(value string) (suffix, error) {
 	return suffix(value), nil
 }
 
-func NewBody(value string) body {
-	return body(value)
+func NewBody(value string) (body, error) {
+	if _, err := strconv.ParseUint(value, 10, 64); err != nil {
+		return body(""), fmt.Errorf("body must be a number")
+	}
+	return body(value), nil
 }
 
 func NewCodabar(prefix prefix, suffix suffix, body body) codabar {
