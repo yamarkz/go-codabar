@@ -22,6 +22,10 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	condabar := codabar.NewCodabar(prefix, body, suffix)
+	condabar, err := codabar.NewCodabar(prefix, body, suffix, codabar.WithCheckDigit(codabar.NewCheckDigitByMod11W7))
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	fmt.Println(condabar)
 }
