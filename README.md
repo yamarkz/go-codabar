@@ -26,7 +26,7 @@ Designed to emphasize Go best practices and idioms, including:
 
 ### Codabar Generation
 - `NewCodabar(prefix, body, suffix)`: Generate a standard Codabar barcode.
-- `NewCodabarWithCheckDigit(prefix, body, suffix, opts...)`: Generate a Codabar barcode with an optional check digit, allowing customization through functional options.
+- `NewCodabar(prefix, body, suffix, opts...)`: Generate a Codabar barcode with an optional check digit, allowing customization through functional options.
 
 ### Check Digit Calculations
 - **Modulus 11**: Provides a weighted Modulus 11 algorithm for check digit generation.
@@ -81,17 +81,12 @@ func main() {
         return codabar.CheckDigit('5')
     }
 
-    code, err := codabar.NewCodabar(
-        prefix, 
-        body, 
-        suffix, 
-        codabar.WithCheckDigit(checkDigitStrategy),
-    )
-
+    code, err := codabar.NewCodabar(prefix, body, suffix, codabar.WithCheckDigit(checkDigitStrategy))
     if err != nil {
         fmt.Println("Error:", err)
         return
     }
+
     fmt.Println("Generated Codabar with Check Digit:", code)
 }
 
