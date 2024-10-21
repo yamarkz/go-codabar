@@ -2,11 +2,11 @@ package codabar
 
 type codabar string
 
-func NewCodabar(prefix prefix, suffix suffix, body body) codabar {
+func NewCodabar(prefix prefix, body body, suffix suffix) codabar {
 	return codabar(string(prefix) + string(body) + string(suffix))
 }
 
-func NewCodabarWithCheckDigit(prefix prefix, suffix suffix, body body, strategy CheckDigitStrategy) (codabar, error) {
+func NewCodabarWithCheckDigit(prefix prefix, body body, suffix suffix, strategy CheckDigitStrategy) (codabar, error) {
 	seed, err := NewSeed(string(body))
 	if err != nil {
 		return codabar(""), err
